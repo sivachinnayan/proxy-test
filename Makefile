@@ -23,7 +23,7 @@ install: squid
 
 ubuntu-update: 
 	#@echo ${MSG_GET_UPDATE}
-	#${UBUNTU_UPDATE}
+	${UBUNTU_UPDATE}
 
 
 ubuntu-build-essentials: ubuntu-update
