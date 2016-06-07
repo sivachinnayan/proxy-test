@@ -1,24 +1,46 @@
 # Define required macros here
-SHELL = /bin/sh
+SHELL = /bin/bash
 
+# Constants 
 UBUNTU_UPDATE = sudo apt-get update 
+BUILD_ESSENTIALS_CHECKINSTALL = sudo apt-get install build-essentials checkinstall 
 BUILD_ESSENTIALS = sudo apt-get install build-essentials 
-SQUID = sudo apt-get install squid3
+SQUID = sudo apt-get install squid3 
+SKIP_ESSENTIALS = "y"
+
+# Common Messages 
+SKIP_MSG = "Skipping ..."
+MSG_BUILD_ESG = "build essentials"
+MSG_INSTALL_SQUID = "installing squid..."
+MSG_CLEANUP = "clean up "
+MSG_GET_UPDATE = "running apt-get update"
+MSG_INSTALL = "installing.."
+
 
 install: squid
-	@echo installing..
+	@echo ${MSG_INSTALL}
+
 
 ubuntu-update: 
-	@echo apt-get update
-	${UBUNTU_UPDATE}
+	#@echo ${MSG_GET_UPDATE}
+	#${UBUNTU_UPDATE}
+
 
 ubuntu-build-essentials: ubuntu-update
-	@echo build essentials
-	${BUILD_ESSENTIALS}
+	@echo ${BUILD_ESSENTIALS}
+	@if [ ${SKIP_ESSENTIALS} = "y" ]; then\
+		echo ${SKIP_MSG};\
+	else\
+		${BUILD_ESSENTIALS};\
+	fi
+
 
 squid: ubuntu-build-essentials
-	@echo installing squid...
+	@echo ${MSG_INSTALL_SQUID}
 	${SQUID}
 
+
 clean:
-	@echo cleanup ..
+	@echo ${MSG_CLEANUP}
+
+
