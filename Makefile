@@ -22,7 +22,7 @@ install: squid
 
 
 ubuntu-update: 
-	#@echo ${MSG_GET_UPDATE}
+	@echo ${MSG_GET_UPDATE}
 	${UBUNTU_UPDATE}
 
 
