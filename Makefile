@@ -46,8 +46,19 @@ jslint:
 	./node_modules/jscs/bin/jscs ./proxy.js ./index.js --present=airbnb
 
 
+test-cov:
+	$(MAKE) jslint
+	@NODE_ENV=test ./node_modules/.bin/istanbul cover \
+	./node_modules/mocha/bin/_mocha -- -R spec
+
 test-coveralls:
-	@NODE_ENV=test ./node_modules/.bin/istanbul cover proxy.js index.js ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+	echo TRAVIS_JOB_ID $(TRAVIS_JOB_ID)
+	$(MAKE) jslint
+	@NODE_ENV=test ./node_modules/.bin/istanbul cover \
+	./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && \
+		cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js || true
+
+	#@NODE_ENV=test ./node_modules/.bin/istanbul cover proxy.js index.js ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 
 clean:
 	@echo ${MSG_CLEANUP}
