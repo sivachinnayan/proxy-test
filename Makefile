@@ -47,8 +47,7 @@ jslint:
 
 
 test-coveralls:
-	@NODE_ENV=test ./node_modules/.bin/istanbul cover \
-		cat ./coverage/lcov.info | ./node_modules/.bin/coveralls --verbose
+	@NODE_ENV=test ./node_modules/.bin/istanbul cover proxy.js index.js ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 
 clean:
 	@echo ${MSG_CLEANUP}
