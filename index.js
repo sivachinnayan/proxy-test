@@ -11,11 +11,11 @@
 //    r.get('http://google.com/doodle.png').pipe(resp)
 //  }
 //});
-
+'use strict';
 var debug = require('debug');
-var http = require ('http');
+var http = require('http');
 
-http.get ({
+http.get({
     host: 'localhost',
     port: 3128,
     path: 'http://nodejs.org/'

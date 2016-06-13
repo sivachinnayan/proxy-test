@@ -40,7 +40,7 @@ squid: ubuntu-build-essentials
 	${SQUID}
 
 lint:
-	./node_modules/.bin/jshint ./index.js ./proxy.js
+	./node_modules/jslint/bin/jslint.js ./proxy.js ./index.js
 
 clean:
 	@echo ${MSG_CLEANUP}

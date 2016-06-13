@@ -1,3 +1,4 @@
+'use strict';
 var HttpProxyAgent = require('http-proxy-agent');
 var HttpsProxyAgent = require('https-proxy-agent');
 var request = require('request');
@@ -10,7 +11,7 @@ var agent = new HttpProxyAgent(proxy);
 var agents = new HttpsProxyAgent(proxy);
 
 var argv = minimist(process.argv.slice(2));
-var _url = argv['u'];
+var url = argv.u;
 
 var logB = bunyan.createLogger({name: 'proxy-text'});
 
@@ -20,13 +21,18 @@ var log = debug('app:log');
 log.log = console.log.bind(console); // don't forget to bind to console! 
 
 request({
-  uri: _url,
-  agent: agents,
-  timeout: 10000,
-  followRedirect: true,
-  maxRedirects: 10
-}, function(error, response, body) {
-   log('body');
-   log('response');
-   logB.info(response);
+    uri: url,
+    agent: agents,
+    timeout: 10000,
+    followRedirect: true,
+    maxRedirects: 10
+}, function (error, response, body) {
+    if (error) {
+        log(error);
+    }
+    if (body) {
+        log('body');
+    }
+    log('response');
+    logB.info(response);
 });
