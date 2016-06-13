@@ -39,6 +39,8 @@ squid: ubuntu-build-essentials
 	@echo ${MSG_INSTALL_SQUID}
 	${SQUID}
 
+lint:
+	./node_modules/.bin/jshint ./index.js ./proxy.js
 
 clean:
 	@echo ${MSG_CLEANUP}
