@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "pretest": "jscs proxy.js index.js --preset=airbnb",
+    "test": "echo \"Error: no test specified\" && exit 0"
   },
   "author": "Siva",
   "license": "ISC",
@@ -18,8 +19,12 @@
   },
   "devDependencies": {
     "coveralls": "^2.11.9",
+    "grunt": "^1.0.1",
+    "istanbul": "^0.4.3",
     "jscoverage": "^0.6.0",
     "jslint": "^0.10.1",
+    "mocha": "^2.5.3",
+    "mocha-lcov-reporter": "^1.2.0",
     "nodeunit": "^0.9.1"
   }
 }

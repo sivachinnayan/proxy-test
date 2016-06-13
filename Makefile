@@ -42,6 +42,10 @@ squid: ubuntu-build-essentials
 lint:
 	./node_modules/jslint/bin/jslint.js ./proxy.js ./index.js
 
+test-coveralls:
+	@NODE_ENV=test ./node_modules/.bin/istanbul cover \
+		cat ./coverage/lcov.info | ./node_modules/.bin/coveralls --verbose
+
 clean:
 	@echo ${MSG_CLEANUP}
 
