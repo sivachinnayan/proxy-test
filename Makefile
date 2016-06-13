@@ -7,6 +7,8 @@ BUILD_ESSENTIALS_CHECKINSTALL = sudo apt-get install build-essentials checkinsta
 BUILD_ESSENTIALS = sudo apt-get install build-essentials 
 SQUID = sudo apt-get install squid3 
 SKIP_ESSENTIALS = "y"
+COVERALLS='.coveralls.yml'
+
 
 # Common Messages 
 SKIP_MSG = "Skipping ..."
@@ -54,13 +56,13 @@ test-cov:
 test-coveralls:
 	echo TRAVIS_JOB_ID $(TRAVIS_JOB_ID)
 	$(MAKE) jslint
-	@NODE_ENV=test ./node_modules/.bin/istanbul cover \
+	@NODE_ENV=test ./node_modules/.bin/istanbul cover  proxy.js index.js \
 	./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && \
 		cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js || true
 
-	#@NODE_ENV=test ./node_modules/.bin/istanbul cover proxy.js index.js ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
-
 clean:
-	@echo ${MSG_CLEANUP}
+	@echo @MSG_CLEANUP
 
+travis:
+	@echo "repo_token: $(COVERALLS_REPO_TOKEN)" > ${COVERALLS}; 
 

@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "pretest": "make jslint",
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "pretest": "make jslint && make travis",
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "posttest": "make test-coveralls && rm -rf .coveralls.yml"
   },
   "author": "Siva",
   "license": "ISC",
