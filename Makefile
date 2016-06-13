@@ -42,6 +42,10 @@ squid: ubuntu-build-essentials
 lint:
 	./node_modules/jslint/bin/jslint.js ./proxy.js ./index.js
 
+jslint:
+	./node_modules/jscs/bin/jscs ./proxy.js ./index.js --present=airbnb
+
+
 test-coveralls:
 	@NODE_ENV=test ./node_modules/.bin/istanbul cover \
 		cat ./coverage/lcov.info | ./node_modules/.bin/coveralls --verbose
