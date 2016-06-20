@@ -1,4 +1,3 @@
-'use strict';
 var HttpProxyAgent = require('http-proxy-agent');
 var HttpsProxyAgent = require('https-proxy-agent');
 var request = require('request');
