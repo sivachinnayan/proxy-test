@@ -1,4 +1,3 @@
-'use strict';
 var debug = require('debug');
 var http = require('http');
 
